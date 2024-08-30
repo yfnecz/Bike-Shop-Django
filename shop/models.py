@@ -61,17 +61,13 @@ class Order(models.Model):
         return f"{self.name} {self.status}"
 
     def new_order(self):
-        # need to update inventory
-        frame = Frame.objects.get(id=self.bike.frame.id)
-        frame.quantity -= 1
-        frame.save()
-        seat = Seat.objects.get(id=self.bike.seat.id)
-        seat.quantity -= 1
-        seat.save()
+        self.bike.frame.quantity -= 1
+        self.bike.frame.save()
+        self.bike.seat.quantity -= 1
+        self.bike.seat.save()
         if self.bike.has_basket:
             baskets = Basket.objects.first()
             baskets.quantity -= 1
             baskets.save()
-        tires = Tire.objects.get(id=self.bike.tire.id)
-        tires.quantity -= 2
-        tires.save()
+        self.bike.tire.quantity -= 2
+        self.bike.tire.save()
