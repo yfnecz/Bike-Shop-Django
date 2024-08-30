@@ -38,7 +38,6 @@ class BikeView(View):
 
     def post(self, request, pk, *args, **kwargs):
         id = self.kwargs['pk']
-        bike = models.Bike.objects.filter(id=pk).first()
         form = OrderForm(request.POST)
         order = form.save(commit=False)
         order.bike = models.Bike.objects.filter(id=pk).first()
