@@ -15,15 +15,15 @@ class BikeShopTestRunner(BikeShopTest):
         BikeShopTest.check_create_order_model,
 
         # 2 stage
-        # BikeShopTest.check_bike_list,
-        #
+        BikeShopTest.check_bike_list,
+
         # 3 stage
         # BikeShopTest.check_bike_detail,
         # BikeShopTest.check_bike_links,
-        #
+
         # 4 stage
         # BikeShopTest.check_form_enough_parts,
-        #
+
         # 5 stage
         # BikeShopTest.check_order_processing,
         # BikeShopTest.check_order_page_created

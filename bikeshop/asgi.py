@@ -1,5 +1,5 @@
 """
-ASGI config for bikeshop project.
+ASGI config for shop project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

@@ -1,4 +1,4 @@
-"""bikeshop URL Configuration
+"""shop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import MainView
+
+
+admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shop.urls')),
-    path("", MainView.as_view()),
+    path('', include('shop.urls'))
 ]
