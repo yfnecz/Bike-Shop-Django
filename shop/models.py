@@ -1,9 +1,6 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
-# DecimalField, FloatField, IntegerField, BooleanField, CharField, TextField, DateField and FileField.
-# price = models.DecimalField(max_digits=8, decimal_places=2)
 class Frame(models.Model):
     color = models.CharField(max_length=255)
     quantity = models.IntegerField()
@@ -30,13 +27,13 @@ class Tire(models.Model):
 
 class Basket(models.Model):
     quantity = models.IntegerField()
+
     def __str__(self):
         return f"{self.quantity}"
 
 
 class Bike(models.Model):
     frame = models.ForeignKey("Frame", on_delete=models.CASCADE)
-    # There are other deleting strategies besides CASCADE: PROTECT, RESTRICT, SET_NULL, SET_DEFAULT, SET(), and DO_NOTHING
     seat = models.ForeignKey("Seat", on_delete=models.CASCADE)
     tire = models.ForeignKey("Tire", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -63,30 +60,19 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.name} {self.status}"
 
-
-team_model_manager = Frame.objects
-
-#falmouth_falcons = Team.objects.create(name="Falmouth Falcons")
-#Player.objects.create(name="Karl Broadmoor", height=180, team=falmouth_falcons)
-#Team.objects.filter(name="Ballycastle Bats")
-#Player.objects.bulk_create([
-#    Player(name="Karl Broadmoor", height=180, team=falmouth_falcons),
-#    Player(name="Lennox Campbell", height=197, team=montrose_magpies)
-#])
-#falcons = Team.objects.get(name="Falmouth Falcons")
-#falcon_player = Player.objects.get(team=falcons)
-#try:
-#    tornados = Team.objects.get(name="Tutshill Tornados")
-#except Team.DoesNotExist:
-
-#You will get not a player but a Player.MultipleObjectsReturned exception.
-#great_score_at_home_games = Game.objects.filter(home_team_points__gt=12)
-
-#tornados = Team.objects.filter(name="Tutshill Tornados")
-#if len(tornados) == 1:
-#    tornados_team = tornados[0]
-
-#Team.objects.filter(name="Tutshill Tornados").count()
-#team, created = Team.objects.get_or_create(name="Puddlemere United")
-#if not Team.objects.filter(name="Puddlemere United").exists():
-
+    def new_order(self):
+        # need to update inventory
+        frame = Frame.objects.get(id=self.bike.frame.id)
+        frame.quantity -= 1
+        frame.save()
+        seat = Seat.objects.get(id=self.bike.seat.id)
+        seat.quantity -= 1
+        seat.save()
+        if self.bike.has_basket:
+            baskets = Basket.objects.first()
+            baskets.quantity -= 1
+            baskets.save()
+        tires = Tire.objects.get(id=self.bike.tire.id)
+        tires.quantity -= 2
+        tires.save()
+        pass

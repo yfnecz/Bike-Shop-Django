@@ -1,56 +1,48 @@
 from django.views import View
 from django.shortcuts import render
-from django.views import generic
 from . import models
-from django.http import HttpResponse
+from .forms import OrderForm
 
 
-class MainView(View):
-    def get(self, request, *args, **kwargs):
-        context = {"post": "Hello", "bikes_index": "Index"}
-        return render(request, "shop/index.html", context=context)
-    # We can also pass the value of the model with object_model.field as the context:
+def index(request):
+    return render(request, 'shop/index.html')
 
-
-#my_favorite_frame = Frame(color='Purple', quantity=15)
-#context = {'frame': my_favorite_frame}
-
-
-class IndexView(generic.ListView):
-    template_name = 'shop/index.html'
-    context_object_name = 'frames'
-    #def get_queryset(self):
-    #    return Frame.objects.all
 
 def list_bikes(request):
-    greetings_to = 'Anonymous'
     bikes = models.Bike.objects.all
     return render(request, 'shop/bikes.html', {'bikes': bikes})
+
+
+class OrderView(View):
+    def get(self, request, pk, *args, **kwargs):
+        pk = self.kwargs['pk']
+        order = models.Order.objects.filter(id=pk).first()
+        return render(request, 'shop/order.html', {'order': order})
+
 
 class BikeView(View):
     def get(self, request, pk, *args, **kwargs):
         id = self.kwargs['pk']
+        available = True
         bike = models.Bike.objects.filter(id=pk).first()
-        return render(request, 'shop/bike.html', {'bike':bike})
+        frame = models.Frame.objects.filter(id=bike.frame.id).first()
+        tire = models.Tire.objects.filter(id=bike.tire.id).first()
+        seat = models.Seat.objects.filter(id=bike.seat.id).first()
+        baskets = models.Basket.objects.first()
+        if bike.has_basket and baskets.quantity < 1:
+            available = False
+        if frame.quantity < 1 or seat.quantity < 1 or tire.quantity < 2:
+            available = False
+        order_form = OrderForm()
+        return render(request, 'shop/bike.html', {'bike': bike, 'available': available, 'order_form': order_form})
 
-#def index(request):
-#    bikes_list = Bike.objects.order_by("name")
-#    context = {"post": first_post, "bikes_index": bikes_list[0]}
-#    return render(request, "shop/index.html", context)
+    def post(self, request, pk, *args, **kwargs):
+        id = self.kwargs['pk']
+        bike = models.Bike.objects.filter(id=pk).first()
+        form = OrderForm(request.POST)
+        order = form.save(commit=False)
+        order.bike = models.Bike.objects.filter(id=pk).first()
+        order.save()
+        order.new_order()
+        return render(request, 'shop/order.html', {'order': order})
 
-
-
-
-#def main_page_view(request):
-#    if request.method == "GET":
-#        html =  "\n".join(f"<div>{candy}</div>" for candy in candies)
-#        return HttpResponse(html)
-
-
-#class CandyView(View):
-#    def get(self, request, name, *args, **kwargs):
-#        title = f"<h1>{name}</h1>"
-#        html = "\n".join(f"<div>{attr}: {value}</div>" for attr, value in candies[name].items())
-#       return HttpResponse(title + html)
-
-#raise Http404  # or return HttpResponse(status=404)

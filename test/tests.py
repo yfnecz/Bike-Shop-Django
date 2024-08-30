@@ -25,8 +25,8 @@ class BikeShopTestRunner(BikeShopTest):
         BikeShopTest.check_form_enough_parts,
 
         # 5 stage
-        # BikeShopTest.check_order_processing,
-        # BikeShopTest.check_order_page_created
+        BikeShopTest.check_order_processing,
+        BikeShopTest.check_order_page_created
     ]
 
     @dynamic_test(data=funcs)

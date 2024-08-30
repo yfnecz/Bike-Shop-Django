@@ -4,8 +4,17 @@
     <p>frame: {{ bike.frame}}</p>
     <p>seat: {{ bike.seat }}</p>
     <p>tires: {{ bike.tire }}</p>
-    <p>basket: {% if bike.has_basket %}yes{% else %}no{% endif %}</p>
+    <p>basket: {{ bike.has_basket|yesno:"yes,no" }}</p>
     <p>description: {{ bike.description }}</p>
-    <be>
+    {% if available %}
+      <p><b>If you want to order the bike, fill in the form below:</b></p>
+      <form method="post">
+        {% csrf_token %}
+        <table>{{ order_form.as_p }}</table>
+        <button type="submit">Order</button>
+      </form>
+    {% else %}
+      <p><b>Unfortunately, this bike is currently not available.</b></p>
+    {% endif %}
   </body>
 </html>
