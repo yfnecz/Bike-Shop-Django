@@ -7,3 +7,7 @@ To start the web applcation:
 And open:
 
 ```http://127.0.0.1:8000/```
+
+For admin panel and to manage inventory and orders, open:
+
+```http://127.0.0.1:8000/admin```
