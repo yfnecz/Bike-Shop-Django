@@ -2,9 +2,8 @@
   <body>
   <h1>Welcome to the Bike Shop</h1>
   <h2>Choose one of our bikes:</h2>
-    <h3>Unread articles for today: {{num_articles }}</h3>
   {% for bike in bikes %}
-    <h4>{{ bike.name }}</h4>
+    <p><a href="{% url 'bike_detail' bike.id %}">{{ bike.name }}</a></p>
     <be>
   {% endfor %}
   </body>

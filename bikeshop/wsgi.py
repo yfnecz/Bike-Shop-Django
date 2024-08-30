@@ -1,5 +1,5 @@
 """
-WSGI config for shop project.
+WSGI config for bikeshop project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
