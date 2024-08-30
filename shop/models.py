@@ -75,4 +75,3 @@ class Order(models.Model):
         tires = Tire.objects.get(id=self.bike.tire.id)
         tires.quantity -= 2
         tires.save()
-        pass
