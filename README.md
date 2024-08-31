@@ -14,7 +14,11 @@ For admin panel and to manage inventory and orders, open:
 
 To create admin user:
 
-```python3 manage.py shell
+```
+python3 manage.py shell
+```
+
+```
 from django.contrib.auth.models import User
 User.objects.create_superuser(
    username='admin', email='admin@example.com', password='12345'
