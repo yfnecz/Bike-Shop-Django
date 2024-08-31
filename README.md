@@ -11,3 +11,13 @@ And open:
 For admin panel and to manage inventory and orders, open:
 
 ```http://127.0.0.1:8000/admin```
+
+To create admin user:
+
+```python3 manage.py shell
+from django.contrib.auth.models import User
+User.objects.create_superuser(
+   username='admin', email='admin@example.com', password='12345'
+)
+exit()
+```
