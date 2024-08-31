@@ -3,7 +3,7 @@ Educational Python project for creating the "Bike Shop" using Django python fram
 To start the web applcation:
 
 ```Shell
-python3 manage.py makemigrations &&  python3 manage.py migrate &&  python3 manage.py runserver
+python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver
 ```
 
 And open:
