@@ -2,7 +2,9 @@ Educational Python project for creating the "Bike Shop" using Django python fram
 
 To start the web applcation:
 
-```python3 manage.py makemigrations &&  python3 manage.py migrate &&  python3 manage.py runserver```
+```Shell
+python3 manage.py makemigrations &&  python3 manage.py migrate &&  python3 manage.py runserver
+```
 
 And open:
 
@@ -14,12 +16,14 @@ For admin panel and to manage inventory and orders, open:
 
 To create admin user:
 
-```
+```Shell
 python3 manage.py shell
 ```
 
-```from django.contrib.auth.models import User
+```python
+from django.contrib.auth.models import User
 User.objects.create_superuser(
    username='admin', email='admin@example.com', password='12345'
 )
-exit()```
+exit()
+```
