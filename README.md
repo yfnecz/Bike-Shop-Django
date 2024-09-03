@@ -1,6 +1,7 @@
 Educational Python project for creating the "Bike Shop" using Django python framework.
+SQLite database is used for storage.
 
-To start the web applcation:
+To start the web applcation locally:
 
 ```Shell
 python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver
