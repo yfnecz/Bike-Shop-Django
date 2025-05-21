@@ -1,4 +1,6 @@
 <html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
   <body>
     <h2>{{ bike.name }}</h2>
     <p>frame: {{ bike.frame}}</p>
