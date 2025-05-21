@@ -1,11 +1,23 @@
+# [Bike Shop Django](https://bike-shop-django.onrender.com/)
+
 Educational Python project for creating the "Bike Shop" using Django python framework.
 
 SQLite database is used for data storage.
 
-To start the web applcation locally:
+Deployed using render: [Check it out](https://bike-shop-django.onrender.com/)
+
+[Admin panel](https://bike-shop-django.onrender.com/admin)
+
+```username:admin password:12345```
+
+To start the web applcation locally using Docker:
 
 ```Shell
-python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver
+docker build -t bikeshop .
+```
+
+```Shell
+docker run --name bikeshop -p 8000:8000 bikeshop
 ```
 
 And open:
@@ -19,13 +31,7 @@ For admin panel and to manage inventory and orders, open:
 To create admin user:
 
 ```Shell
-python3 manage.py shell
+docker exec -it bikeshop python manage.py createsuperuser
 ```
 
-```python
-from django.contrib.auth.models import User
-User.objects.create_superuser(
-   username='admin', email='admin@example.com', password='12345'
-)
-exit()
-```
+Packaged application already has admin/12345 user/password.
