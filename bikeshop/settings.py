@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z)%15u9lmbz^@u=7(04b94i8h#jtb4#g9ln_4z$ivuv*32z@4z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bike-shop-django.onrender.com']
 
 INTERNAL_IPS = [
     # ...
