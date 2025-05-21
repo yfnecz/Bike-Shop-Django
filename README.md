@@ -1,8 +1,16 @@
+# [Bike Shop Django](https://bike-shop-django.onrender.com/)
+
 Educational Python project for creating the "Bike Shop" using Django python framework.
 
 SQLite database is used for data storage.
 
-To start the web applcation using docker:
+Deployed using render: [Check it out](https://bike-shop-django.onrender.com/)
+
+[Admin panel](https://bike-shop-django.onrender.com/admin)
+
+```username:admin password:12345```
+
+To start the web applcation locally using Docker:
 
 ```Shell
 docker build -t bikeshop .
