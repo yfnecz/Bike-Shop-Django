@@ -22,4 +22,4 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls'))
-] + debug_toolbar_urls()
+] # + debug_toolbar_urls()
