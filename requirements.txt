@@ -1,3 +1,2 @@
 django
 requests
-django-debug-toolbar
