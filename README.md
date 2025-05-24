@@ -4,9 +4,9 @@ Educational Python project for creating the "Bike Shop" using Django python fram
 
 SQLite database is used for data storage.
 
-Deployed using render: [Check it out](https://bike-shop-django.onrender.com/)
+# Deployed using render: [Check it out](https://bike-shop-django.onrender.com/)
 
-[Admin panel](https://bike-shop-django.onrender.com/admin)
+# [Admin panel](https://bike-shop-django.onrender.com/admin)
 
 ```username:admin password:12345```
 
