@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'bike-shop-django.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', "https://bike-shop-django.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://bike-shop-django.onrender.com"]
 
 INTERNAL_IPS = [
     # ...
